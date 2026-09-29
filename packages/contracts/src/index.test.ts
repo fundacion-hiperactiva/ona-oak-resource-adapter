@@ -33,7 +33,8 @@ const worksheetScaffolding = {
   get: () => Promise.resolve(null),
   open: () => Promise.resolve(null),
   remove: () => Promise.resolve(null),
-  retry: () => Promise.resolve(null),
+  retryTransformation: () => Promise.resolve(null),
+  retrySuggestions: () => Promise.resolve(null),
   dismiss: () => Promise.resolve(null),
   undo: () => Promise.resolve(null),
 };
@@ -440,10 +441,21 @@ describe("Resource Adapter API contracts", () => {
       },
       {
         invoke: (caller: InternalCaller) =>
-          caller.worksheetScaffolding.retry({ adaptationId, attemptId, requestId }),
-        name: "retry",
+          caller.worksheetScaffolding.retryTransformation({
+            adaptationId,
+            attemptId,
+            requestId,
+          }),
+        name: "retryTransformation",
         request: { adaptationId, attemptId, requestId },
-        service: "retry" as const,
+        service: "retryTransformation" as const,
+      },
+      {
+        invoke: (caller: InternalCaller) =>
+          caller.worksheetScaffolding.retrySuggestions({ adaptationId, requestId }),
+        name: "retrySuggestions",
+        request: { adaptationId, requestId },
+        service: "retrySuggestions" as const,
       },
       {
         invoke: (caller: InternalCaller) =>

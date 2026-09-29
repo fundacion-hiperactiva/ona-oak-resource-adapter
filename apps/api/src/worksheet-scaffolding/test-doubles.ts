@@ -324,6 +324,7 @@ export function repositoryDefaults(): RepositoryResults {
     getOpenSuggestion: storedSuggestion(),
     getPendingReview: null,
     getPrimaryTransformationInput: storedDocument(DOCUMENT_ID),
+    findSuggestionGeneration: null,
     isAcceptedContribution: true,
     isAttemptComplete: false,
     listAppliedTransformations: [],
